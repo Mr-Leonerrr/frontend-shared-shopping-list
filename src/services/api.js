@@ -12,6 +12,20 @@ export const createList = async (data) => {
     await axios.post(`${API_BASE}/lists`, data)
 }
 
+export const updateList = async (id, data) => {
+    try {
+        const res = await axios.patch(`${API_BASE}/lists/${id}`, data);
+        return res.data;
+    } catch (err) {
+        console.error('Error al actualizar lista', err);
+        throw err;
+    }
+}
+
+export const deleteList = async (id) => {
+    await axios.delete(`${API_BASE}/lists/${id}`)
+}
+
 export const addItemToList = async (item) => {
     await axios.post(`${API_BASE}/items`, item)
 }

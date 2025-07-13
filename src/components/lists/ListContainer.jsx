@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLists } from '../../services/api';
+import { getLists, deleteList } from '../../services/api';
 import List from './List';
 import ListForm from './ListForm';
 
@@ -11,20 +11,28 @@ export default function ListContainer() {
         setLists(data);
     };
 
+    const handleDelete = async (id) => {
+        await deleteList(id);
+        fetchLists();
+    };
+
     useEffect(() => {
         fetchLists()
     }, []);
     
     return (
-        <div className="space-y-4">
+        <div>
             <ListForm onCreated={fetchLists} />
-            {lists.length === 0 ? (
-                <p className="text-gray-500">No hay listas todavía.</p>
-            ) : (
-            lists.map((list) => (
-                <List key={list.id} list={list} onUpdated={fetchLists} />
-            ))
-            )}
+            <div className="mt-4 space-y-4">
+                {lists.map((list) => (
+                    <List 
+                        key={list.id} 
+                        list={list} 
+                        onUpdated={fetchLists} 
+                        onDeleted={handleDelete} 
+                    />
+                ))}
+            </div>
         </div>
     );
 }
