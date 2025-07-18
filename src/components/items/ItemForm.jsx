@@ -31,6 +31,7 @@ export default function ItemForm({ listId, onAdded }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
         className="border px-2 py-1 rounded w-full"
+        name="item[name]"
         placeholder="Nombre del ítem"
         required
       />
@@ -41,6 +42,7 @@ export default function ItemForm({ listId, onAdded }) {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
         className="border px-2 py-1 rounded w-24"
+        name="item[price]"
         placeholder="Precio"
         required
       />
@@ -51,6 +53,7 @@ export default function ItemForm({ listId, onAdded }) {
         value={quantity}
         onChange={(e) => setQuantity(Number(e.target.value))}
         className="border px-2 py-1 rounded w-24"
+        name="item[quantity]"
         placeholder="Cantidad"
       />
 
